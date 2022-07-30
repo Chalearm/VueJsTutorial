@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+      <title>Directives 2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        .box{
+            background-color: #CCCCFF;
+            height: 280px;
+            width: 200px;
+        }
+        .box2{
+            background-color: #CCFFCC;
+            height: 280px;
+            width: 200px;
+        }
+        .box3{
+            background-color: #FFCCFF;
+            height: 280px;
+            width: 200px;
+        }
+        .box4{
+            background-color: #CCFFFF;
+            height: 280px;
+            width: 200px;
+        }
+        v-cloak {
+            display: none;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>  
+</head>
+
+<body>
+
+
+<div id="directives3" v-cloak>
+    <div>V-cloak, hide everything from rendering until the whole vue application is ready</div>
+    <hr/>
+    <div v-if="isVisible" class="box"></div>
+    <div v-else-if="isVisible2" class="box2"></div>
+    <div v-else class="box3"></div>
+    <div v-show="isVisible" class="box4"></div>
+</div>
+
+<script>
+    const {createApp} = Vue
+    createApp({
+        data(){
+            return {
+                isVisible: false,
+                isVisible2: true
+            }
+        }
+    }).mount('#directives3')
+ </script>
+
+</body>
+</html>

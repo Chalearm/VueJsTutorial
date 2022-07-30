@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Directives 1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="">
+<style>
+</style>
+<script src="https://unpkg.com/vue@3"></script>
+<body>
+
+
+<div id="directives1">
+    <h1>{{msg}}</h1>
+    <input v-model="msg" />
+</div>
+
+<script>
+    const {createApp} = Vue
+    createApp({
+        data(){
+            return {
+                msg:'Hello Vue World!'
+            }
+        }
+    }).mount('#directives1')
+ </script>
+
+</body>
+</html>
