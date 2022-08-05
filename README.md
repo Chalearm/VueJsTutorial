@@ -20,3 +20,9 @@ Added the following code in the HTML file
 - Event&Method
 	- Button event
 	- Method
+- Loop
+- Life cycle hook
+	- updated
+	- created
+	- mounted
+	- unmounted

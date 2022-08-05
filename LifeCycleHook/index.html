@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+      <title>LifeCycleHook1</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        .box{
+            background-color: #CCCCFF;
+            height: 280px;
+            width: 200px;
+        }
+        v-cloak {
+            display: none;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>  
+</head>
+
+<body>
+
+
+<div id="app" v-cloak>
+    <p>the methods (updated, created, mounted and unmounted) will be called along with states of Life cycle hook</p>
+    <hr/>
+    <button @click="toggleBox">Toggle Box</button>
+    <test-box v-if="isVisible" />
+</div>
+
+<script>
+    let app = Vue.createApp({
+        data: function(){
+            return {
+                isVisible: false
+            }
+        },
+        methods:{
+            toggleBox: function(){
+                this.isVisible = !this.isVisible
+            }
+        },
+        // in this case, it is called by triggering from data variable (isVisible is changed from false to true) updating from the component 
+        updated()
+        {
+            alert('updated')
+        }
+    })
+    app.component('test-box',{
+        template:`
+        <div class="box"></div>
+        `,
+        created(){
+            alert('test-box is created')
+        },
+        mounted(){
+            alert('test-box is mounted')
+
+        },
+        unmounted(){
+            alert('test-box is unmounted')
+
+        }
+    })
+    app.mount('#app')
+ </script>
+
+</body>
+</html>

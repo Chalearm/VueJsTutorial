@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+      <title>Component 1</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        v-cloak {
+            display: none;
+        }
+        input {
+            margin:  10px;
+            display:  block;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>  
+</head>
+<body>
+
+
+<div id="app" v-cloak>
+    {{msg}}
+    <login-form/>
+</div>
+
+<script>
+    let app = Vue.createApp({
+        data(){
+            return {
+                msg:'Hello Vue World!'
+            }
+        }
+    })
+
+    app.component('login-form',{
+        template: `
+            <form @submit.prevent="handleSubmit">
+                <h1>{{title}}</h1>
+                <input v-model="email" type="email" />
+                <input v-model="pass" type="password" />
+                <button>Log in </button>
+            </form>
+        `,
+        data(){
+            return {
+                title: 'Login Form',
+                email: '',
+                pass: ''
+            }
+        },
+        methods:{
+            handleSubmit(){
+                alert('Username:' + this.email+ ' password:' + this.pass)
+            }
+
+        }
+    })
+    app.mount('#app')
+ </script>
+
+</body>
+</html>

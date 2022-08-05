@@ -41,6 +41,8 @@
     <button v-on:click="isVisible = true">Show Box1</button>
     <button v-on:click="isVisible = !isVisible">Toggle Box1</button>
     <button @click="toggleBoxes">Toggle Boxes</button>
+    <button @click="count++">Add 1</button>
+    <p>Count is: {{count}}</p>
     <div v-if="isVisible" class="box"></div>
     <div v-else-if="isVisible2" class="box2"></div>
     <div v-else class="box3"></div>
@@ -53,7 +55,8 @@
         data(){
             return {
                 isVisible: false,
-                isVisible2: true
+                isVisible2: true,
+                count: 0
             }
         },
         methods: {

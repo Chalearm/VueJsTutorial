@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+      <title>Method 3</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        v-cloak {
+            display: none;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>  
+</head>
+
+<body>
+
+
+<div id="method3" v-cloak>
+    <hr/>
+    {{name}}
+    <input @keyup.enter="greet2(name)" v-model="name" />
+    <button @click="greet">Greet</button>
+</div>
+
+<script>
+    const {createApp} = Vue
+    createApp({
+        data(){
+            return {
+                name: 'Vue.js'
+            }
+        },
+        methods: {
+            greet(event){
+                alert(`Hello ${this.name}!`)
+                if (event){
+                    alert(event.target.tagName)
+                }
+            },
+            greet2(name)
+            {
+                alert(name)
+            }
+        }
+    }).mount('#method3')
+ </script>
+
+</body>
+</html>

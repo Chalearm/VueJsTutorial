@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+      <title>Component 2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        v-cloak {
+            display: none;
+        }
+        input {
+            margin:  10px;
+            display:  block;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>  
+</head>
+<body>
+
+
+<div id="app" v-cloak>
+    {{msg}}
+    <login-form/>
+</div>
+
+<script>
+    let app = Vue.createApp({
+        data(){
+            return {
+                msg:'Component Props which passes the data from parent to child'
+            }
+        }
+    })
+
+    app.component('login-form',{
+        template: `
+            <form @submit.prevent="handleSubmit">
+                <h1>{{title}}</h1>
+                <custom-input :label="emailLabel" v-model="email" />
+                <custom-input :label="passwordLabel" v-model="pass"  />
+                <button>Log in </button>
+            </form>
+        `,
+        components: ['custom-input'],
+        data(){
+            return {
+                title: 'Login Form',
+                email: '',
+                pass: '',
+                emailLabel: 'Email',
+                passwordLabel: 'password'
+            }
+        },
+        methods:{
+            handleSubmit(){
+                alert('Username:' + this.email+ ' password:' + this.pass)
+            }
+
+        }
+    })
+    app.component('custom-input',{
+        template:`
+            <label>
+            {{label}}
+                <input type="text" v-model="inputValue"/>
+            </label>
+        `,
+        // variables in the props are read only.
+        props: ['label', 'modelValue'],
+        // computed is an object where we can define varialbes as keys
+        computed:{
+            inputValue:{
+                get(){
+                  //  alert(this.modelValue);
+                    return this.modelValue
+                },
+                set(value){
+                    this.$emit('update:modelValue',value)
+                }
+            }
+        }
+    })
+    app.mount('#app')
+ </script>
+
+</body>
+</html>
